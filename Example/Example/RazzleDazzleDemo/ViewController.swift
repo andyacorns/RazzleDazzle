@@ -41,7 +41,6 @@ class ViewController: AnimatedPagingScrollViewController {
         super.viewDidLoad()
         configureViews()
         configureAnimations()
-        UIApplication.shared.setStatusBarHidden(true, with: .fade)
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -53,6 +52,10 @@ class ViewController: AnimatedPagingScrollViewController {
         coordinator.animate(alongsideTransition: {context in
             self.scaleAirplanePathToSize(size)
             }, completion: nil)
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     private func configureViews () {
@@ -314,7 +317,7 @@ class ViewController: AnimatedPagingScrollViewController {
         shapeLayer.lineWidth = 4
         shapeLayer.miterLimit = 4
         shapeLayer.fillColor = nil
-        shapeLayer.fillRule = kCAFillRuleEvenOdd
+        shapeLayer.fillRule = CAShapeLayerFillRule.evenOdd
         return shapeLayer
     }
     
